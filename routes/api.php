@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [UserController::class, 'store']);
 
-Route::post('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login'])->middleware("throttle:5,5");
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('order', [OrdersController::class, 'store']);

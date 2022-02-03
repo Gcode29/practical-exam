@@ -23,8 +23,10 @@ class OrdersController extends Controller
             'quantity' => $request['quantity'],
         ]);
 
+        $product->decrement('available_stock', $request->quantity);
+
         return response()->json([
             'message' => 'You have successfully ordered this product'
-        ]);
+        ],201);
     }
 }
